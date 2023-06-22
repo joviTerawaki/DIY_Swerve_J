@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -19,6 +22,7 @@ public final class Constants {
 
   public static class SwerveConstants {
     public static final boolean ROTATION_ENCODER_DIRECTION = false; 
+
     /* * * MEASUREMENTS * * */
     public static final double WHEEL_DIAMETER = 4 * 2.5 / 100;
     public static final double TRACK_WIDTH = 0.635;
@@ -28,6 +32,43 @@ public final class Constants {
     public static final double STEER_GEAR_RATIO = 150 / 7;
     
     public static final double VOLTAGE = 7.2;
+
+    /* * * SWERVE DRIVE KINEMATICS * * */
+    // ORDER IS ALWAYS FL, BL, FR, BR 
+    public static final SwerveDriveKinematics DRIVE_KINEMATICS = new SwerveDriveKinematics(
+      // front left
+      new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2),
+      // back left
+      new Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2),
+      // back right
+      new Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2),
+      // front right
+      new Translation2d(WHEEL_BASE / 2, -TRACK_WIDTH / 2)
+    );
+
+    /* * * FRONT LEFT * * */
+    public static final int FL_DRIVE_PORT = 1;
+    public static final int FL_ROTATION_PORT = 5;
+    public static final int FL_ABSOLUTE_ENCODER_PORT = 9;
+    public static final double FL_OFFSET = -Math.toRadians(3.174);
+
+    /* * * BACK LEFT * * */
+    public static final int BL_DRIVE_PORT = 2;
+    public static final int BL_ROTATION_PORT = 6;
+    public static final int BL_ABSOLUTE_ENCODER_PORT = 10;
+    public static final double BL_OFFSET = -Math.toRadians(3.120);
+
+    /* * * BACK RIGHT * * */
+    public static final int BR_DRIVE_PORT = 3;
+    public static final int BR_ROTATION_PORT = 7;
+    public static final int BR_ABSOLUTE_ENCODER_PORT = 11;
+    public static final double BR_OFFSET = -Math.toRadians(3.106);
+
+    /* * * FRONT RIGHT * * */
+    public static final int FR_DRIVE_PORT = 8;
+    public static final int FR_ROTATION_PORT = 4;
+    public static final int FR_ABSOLUTE_ENCODER_PORT = 12;
+    public static final double FR_OFFSET = -Math.toRadians(3.042);
     
     /* * * CONVERSIONS FOR ENCODERS * * */
     public static final double DRIVE_ENCODER_POSITION_CONVERSION = GEAR_RATIO * Math.PI * WHEEL_DIAMETER; //drive enc rotation

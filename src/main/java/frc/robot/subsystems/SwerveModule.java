@@ -111,4 +111,9 @@ public class SwerveModule {
         //driveMotor.set(optimizedState.speedMetersPerSecond); 
 
     }
+
+    public void stop(){
+        driveMotor.set(0);
+        rotationMotor.set(0);
+    }
 }
