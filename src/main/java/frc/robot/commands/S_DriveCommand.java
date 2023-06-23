@@ -75,7 +75,7 @@ public class S_DriveCommand extends CommandBase {
 
   /* * * ADDED METHODS * * */
   public double deadzone(double num){
-    return Math.abs(num) > 0.01 ? num : 0;
+    return Math.abs(num) > 0.1 ? num : 0;
 }
 private static double modifyAxis(double num) {
   // Square the axis

@@ -72,7 +72,7 @@ public class SwerveSubsystem extends SubsystemBase {
   //returns the Rotation2d object 
   //a 2d coordinate represented by a point on the unit circle (the rotation of the robot)
   public Rotation2d getRotation2d() {
-    return Rotation2d.fromDegrees(360.0 - navx.getYaw());
+    return Rotation2d.fromDegrees(navx.getYaw());
   }
 
   /* * * POSE * * */
@@ -87,6 +87,7 @@ public class SwerveSubsystem extends SubsystemBase {
   /* * * STATES * * */
 
   //SET STATES 
+  //gets a SwerveModuleStates array from driver control and sets each module 
   public void setModuleStates(SwerveModuleState[] desiredStates) {
     SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, SwerveConstants.MAX_SPEED);
     frontLeft.setState(desiredStates[0]);
@@ -117,6 +118,18 @@ public class SwerveSubsystem extends SubsystemBase {
     };
   }
 
+  public void lock() {
+    SwerveModuleState fl = new SwerveModuleState(0, new Rotation2d(Math.toRadians(45)));
+    SwerveModuleState bl = new SwerveModuleState(0, new Rotation2d(Math.toRadians(-45)));
+    SwerveModuleState fr = new SwerveModuleState(0, new Rotation2d(Math.toRadians(45)));
+    SwerveModuleState br = new SwerveModuleState(0, new Rotation2d(Math.toRadians(-45)));
+
+    frontLeft.setAngle(fl);
+    backLeft.setAngle(bl);
+    frontRight.setAngle(fr);
+    backRight.setAngle(br);
+  }
+
   //STOP 
   public void stopModules() {
     frontLeft.stop();
@@ -130,5 +143,9 @@ public class SwerveSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     odometer.update(getRotation2d(), getModulePositions());
+    frontLeft.print();
+    backLeft.print();
+    frontRight.print();
+    backRight.print();
   }
 }
