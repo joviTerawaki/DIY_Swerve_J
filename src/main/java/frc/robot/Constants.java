@@ -78,9 +78,9 @@ public final class Constants {
     public static final double ROTATION_ENCODER_VELOCITY_CONVERSION = ROTATION_ENCODER_POSITION_CONVERSION / 60; //rotation enc speed
 
     /* * * PID VALUES * * */
-    public static final double KP_TURNING = 0.1;
-    public static final double KI_TURNING = 0.02;
-    public static final double KD_TURNING = 0.002;
+    public static final double KP_TURNING = 0.008;//0.01; //0.1
+    public static final double KI_TURNING = 0;//0.01; //0.02
+    public static final double KD_TURNING = 0.0001;//0.002;SS
 
     /* * * MAX * * */
     public static final double MAX_SPEED = 3.6576;

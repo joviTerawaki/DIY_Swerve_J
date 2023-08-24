@@ -113,6 +113,8 @@ public class SwerveModule {
         return new SwerveModulePosition(drivePosition(), Rotation2d.fromDegrees(getAbsoluteEncoderDegrees()));
     }
 
+    /* * * SET METHODS * * */
+
     public void setState(SwerveModuleState desiredState) {
         //optimize state so the rotation motor doesnt have to spin as much 
         SwerveModuleState optimizedState = SwerveModuleState.optimize(desiredState, getState().angle);
