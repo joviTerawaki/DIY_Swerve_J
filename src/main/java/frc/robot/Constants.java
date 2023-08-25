@@ -39,10 +39,10 @@ public final class Constants {
       // front left
       new Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2),
       // back left
-      new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2),
-      // back right
       new Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2),
       // front right
+      new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2),
+      // back right
       new Translation2d(WHEEL_BASE / 2, -TRACK_WIDTH / 2)
     );
 
