@@ -37,9 +37,9 @@ public final class Constants {
     // ORDER IS ALWAYS FL, BL, FR, BR 
     public static final SwerveDriveKinematics DRIVE_KINEMATICS = new SwerveDriveKinematics(
       // front left
-      new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2),
-      // back left
       new Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2),
+      // back left
+      new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2),
       // back right
       new Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2),
       // front right
@@ -50,13 +50,13 @@ public final class Constants {
     public static final int FL_DRIVE_PORT = 1;
     public static final int FL_ROTATION_PORT = 5;
     public static final int FL_ABSOLUTE_ENCODER_PORT = 9;
-    public static final double FL_OFFSET = -Math.toDegrees(-1.621) + 90 + 180;
+    public static final double FL_OFFSET = -Math.toDegrees(1.534) + 90;
 
     /* * * BACK LEFT * * */
     public static final int BL_DRIVE_PORT = 2;
     public static final int BL_ROTATION_PORT = 6;
     public static final int BL_ABSOLUTE_ENCODER_PORT = 10;
-    public static final double BL_OFFSET = -Math.toDegrees(1.506) + 90 + 180;
+    public static final double BL_OFFSET = -Math.toDegrees(1.485) + 90 + 180;
 
     /* * * BACK RIGHT * * */
     public static final int BR_DRIVE_PORT = 3;
@@ -80,7 +80,7 @@ public final class Constants {
     /* * * PID VALUES * * */
     public static final double KP_TURNING = 0.008;//0.01; //0.1
     public static final double KI_TURNING = 0;//0.01; //0.02
-    public static final double KD_TURNING = 0.0001;//0.002;SS
+    public static final double KD_TURNING = 0.0001;//0.002;
 
     /* * * MAX * * */
     public static final double MAX_SPEED = 3.6576;

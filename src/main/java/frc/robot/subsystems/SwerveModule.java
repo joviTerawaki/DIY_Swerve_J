@@ -142,7 +142,7 @@ public class SwerveModule {
     }
 
     public void print() {
-        SmartDashboard.putNumber("S[" + absoluteEncoder.getDeviceID() + "] ABS ENC", Math.toRadians(getAbsoluteEncoderDegrees()));
+        SmartDashboard.putNumber("S[" + absoluteEncoder.getDeviceID() + "] ABS ENC RAD", Math.toRadians(getAbsoluteEncoderDegrees()));
         SmartDashboard.putNumber("S["+absoluteEncoder.getDeviceID()+"] DRIVE SPEED", driveVelocity());
         SmartDashboard.putNumber("S["+absoluteEncoder.getDeviceID()+"] ROTATION SPEED", absoluteEncoder.getVelocity());
         SmartDashboard.putString("S["+absoluteEncoder.getDeviceID()+"] DESIRED STATE", getState().toString());
