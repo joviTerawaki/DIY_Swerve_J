@@ -34,7 +34,7 @@ public class SwerveModule {
     private PIDController rotationPID; 
 
     //init info 
-    private int port; 
+    //private int port; 
     private double encOffset; 
 
     /* * * CONSTRUCTOR * * */
@@ -47,7 +47,7 @@ public class SwerveModule {
      * @param rotationInverted is the rotation motor inverted? 
      */
     public SwerveModule(int drivePort, int rotationPort, int absoluteEncoderPort, double encoderOffset, boolean driveInverted, boolean rotationInverted) {
-        port = drivePort;
+        //port = drivePort;
         encOffset = encoderOffset;
         //instantiate drive motor and encoder 
         driveMotor = new CANSparkMax(drivePort, MotorType.kBrushless); 

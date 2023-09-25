@@ -75,12 +75,16 @@ public class SwerveSubsystem extends SubsystemBase {
     return Rotation2d.fromDegrees(navx.getYaw());
   }
 
-  /* * * POSE * * */
+  /* * * ODOMETRY * * */
   public Pose2d getPose() {
     return odometer.getPoseMeters();
   }
 
   public void setPose(Pose2d pose) {
+    odometer.resetPosition(getRotation2d(), getModulePositions(), pose);
+  }
+
+  public void resetOdometry(Pose2d pose) {
     odometer.resetPosition(getRotation2d(), getModulePositions(), pose);
   }
 
@@ -98,6 +102,7 @@ public class SwerveSubsystem extends SubsystemBase {
 
   //GET STATES 
   //returns the states of the swerve modules in an array 
+  //getState uses drive velocity and module rotation 
   public SwerveModuleState[] getModuleStates() {
     return new SwerveModuleState[] {
       frontLeft.getState(), 
@@ -109,6 +114,7 @@ public class SwerveSubsystem extends SubsystemBase {
 
   //GET POSITIONS
   //returns the positions of the swerve modules in an array 
+  //getPosition uses drive enc and module rotation 
   public SwerveModulePosition[] getModulePositions() {
     return new SwerveModulePosition[] {
       frontLeft.getPosition(), 
@@ -118,11 +124,25 @@ public class SwerveSubsystem extends SubsystemBase {
     };
   }
 
+  //LOCK 
   public void lock() {
     SwerveModuleState fl = new SwerveModuleState(0, new Rotation2d(Math.toRadians(45)));
     SwerveModuleState bl = new SwerveModuleState(0, new Rotation2d(Math.toRadians(-45)));
     SwerveModuleState fr = new SwerveModuleState(0, new Rotation2d(Math.toRadians(45)));
     SwerveModuleState br = new SwerveModuleState(0, new Rotation2d(Math.toRadians(-45)));
+
+    frontLeft.setAngle(fl);
+    backLeft.setAngle(bl);
+    frontRight.setAngle(fr);
+    backRight.setAngle(br);
+  }
+
+  //STRAIGHTEN THE WHEELS 
+  public void straightenWheels() { //set all wheels to 0 degrees 
+    SwerveModuleState fl = new SwerveModuleState(0, new Rotation2d(Math.toRadians(0)));
+    SwerveModuleState bl = new SwerveModuleState(0, new Rotation2d(Math.toRadians(0)));
+    SwerveModuleState fr = new SwerveModuleState(0, new Rotation2d(Math.toRadians(0)));
+    SwerveModuleState br = new SwerveModuleState(0, new Rotation2d(Math.toRadians(0)));
 
     frontLeft.setAngle(fl);
     backLeft.setAngle(bl);
@@ -137,7 +157,6 @@ public class SwerveSubsystem extends SubsystemBase {
     backRight.stop();
     frontRight.stop();
 }
-
 
   @Override
   public void periodic() {
