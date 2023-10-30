@@ -28,8 +28,8 @@ public final class Constants {
     public static final double TRACK_WIDTH = 0.635;
     public static final double WHEEL_BASE = 0.635;
     
-    public static final double GEAR_RATIO = 8.14 / 1;
-    public static final double STEER_GEAR_RATIO = 150 / 7;
+    public static final double DRIVE_GEAR_RATIO = 8.14 / 1;
+    public static final double ROTATION_GEAR_RATIO = 150 / 7;
     
     public static final double VOLTAGE = 7.2;
 
@@ -71,11 +71,13 @@ public final class Constants {
     public static final double FR_OFFSET = -Math.toDegrees(2.637) + 90 + 180;
     
     /* * * CONVERSIONS FOR ENCODERS * * */
-    public static final double DRIVE_ENCODER_POSITION_CONVERSION = GEAR_RATIO * Math.PI * WHEEL_DIAMETER; //drive enc rotation
+    //velocity in meters per sec instead of RPM 
+    public static final double DRIVE_ENCODER_POSITION_CONVERSION = DRIVE_GEAR_RATIO * Math.PI * WHEEL_DIAMETER; //drive enc rotation
+    //velocity in meters instead of rotations 
     public static final double DRIVE_ENCODER_VELOCITY_CONVERSION = DRIVE_ENCODER_POSITION_CONVERSION / 60; //drive enc speed 
  
-    public static final double ROTATION_ENCODER_POSITION_CONVERSION = STEER_GEAR_RATIO * Math.PI; //rotation enc rotation 
-    public static final double ROTATION_ENCODER_VELOCITY_CONVERSION = ROTATION_ENCODER_POSITION_CONVERSION / 60; //rotation enc speed
+    //public static final double ROTATION_ENCODER_POSITION_CONVERSION = ROTATION_GEAR_RATIO * Math.PI; //rotation enc rotation 
+    //public static final double ROTATION_ENCODER_VELOCITY_CONVERSION = ROTATION_ENCODER_POSITION_CONVERSION / 60; //rotation enc speed
 
     /* * * PID VALUES * * */
     public static final double KP_TURNING = 0.008;//0.01; //0.1

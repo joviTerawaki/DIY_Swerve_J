@@ -13,8 +13,6 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.SwerveConstants;
 
-import java.util.Spliterators.AbstractIntSpliterator;
-
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.SensorInitializationStrategy;
 import com.ctre.phoenix.sensors.WPI_CANCoder;
@@ -47,7 +45,6 @@ public class SwerveModule {
      * @param rotationInverted is the rotation motor inverted? 
      */
     public SwerveModule(int drivePort, int rotationPort, int absoluteEncoderPort, double encoderOffset, boolean driveInverted, boolean rotationInverted) {
-        //port = drivePort;
         encOffset = encoderOffset;
         //instantiate drive motor and encoder 
         driveMotor = new CANSparkMax(drivePort, MotorType.kBrushless); 
@@ -70,6 +67,7 @@ public class SwerveModule {
         //set conversion factor for drive enc 
         //reads velocity in meters per second instead of RPM 
         driveEncoder.setVelocityConversionFactor(SwerveConstants.DRIVE_ENCODER_VELOCITY_CONVERSION);
+        //reads velocity in meters instead of rotations 
         driveEncoder.setPositionConversionFactor(SwerveConstants.DRIVE_ENCODER_POSITION_CONVERSION);
 
         /* * * ROTATION * * */
