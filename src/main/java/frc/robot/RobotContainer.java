@@ -44,6 +44,9 @@ public class RobotContainer {
       new S_DriveCommand(swerveSubsystem, () -> -xbox.getLeftX(), () -> xbox.getLeftY(), () -> xbox.getRightX(), false)
     );
 
+    //REGISTER NAMED COMMANDS FOR AUTOS SO THEY WORK :) 
+    //use class NamedCommands and static method registerCommand 
+
     configureBindings();
   }
 
@@ -57,7 +60,9 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    
+
+    return null; 
+    /* 
     //CONFIG FOR TRAJECTORY 
     TrajectoryConfig trajectoryConfig = new TrajectoryConfig(SwerveConstants.MAX_SPEED, 1).setKinematics(SwerveConstants.DRIVE_KINEMATICS);
 
@@ -96,5 +101,6 @@ public class RobotContainer {
       swerveControllerCommand, 
       new InstantCommand( () -> swerveSubsystem.stopModules())
     );
+    */
   }
 }
