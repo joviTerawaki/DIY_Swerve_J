@@ -2,8 +2,11 @@ package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
 
+import javax.swing.text.StyleContext.SmallAttributeSet;
+
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.subsystems.SwerveSubsystem;
@@ -30,12 +33,16 @@ public class S_DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
     SwerveModuleState[] states; 
     /* * * ALTERING VALUES * *   */
     //Joystick values -> double 
     double xSpeed = xSupplier.getAsDouble(); 
     double ySpeed = ySupplier.getAsDouble(); 
     double zSpeed = zSupplier.getAsDouble(); 
+
+    SmartDashboard.putNumber("z speed", zSpeed);
+
 
     //apply deadzone to speed values 
     xSpeed = deadzone(xSpeed); 
@@ -59,6 +66,8 @@ public class S_DriveCommand extends CommandBase {
     }
 
     swerveSubs.setModuleStates(states);
+
+    // SmartDashboard.putString("cmd states", states.toString());
   }
 
   // Called once the command ends or is interrupted.

@@ -10,6 +10,7 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.SwerveConstants;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import com.pathplanner.lib.auto.AutoBuilder;
 
 public class SwerveSubsystem extends SubsystemBase {
 
@@ -35,7 +36,7 @@ public class SwerveSubsystem extends SubsystemBase {
       SwerveConstants.BL_ROTATION_PORT, 
       SwerveConstants.BL_ABSOLUTE_ENCODER_PORT, 
       SwerveConstants.BL_OFFSET, 
-      true, 
+      false, 
       true
     );
 
@@ -44,7 +45,7 @@ public class SwerveSubsystem extends SubsystemBase {
       SwerveConstants.FR_ROTATION_PORT, 
       SwerveConstants.FR_ABSOLUTE_ENCODER_PORT, 
       SwerveConstants.FR_OFFSET, 
-      true, 
+      false, 
       true
     );
 
@@ -53,7 +54,7 @@ public class SwerveSubsystem extends SubsystemBase {
       SwerveConstants.BR_ROTATION_PORT, 
       SwerveConstants.BR_ABSOLUTE_ENCODER_PORT, 
       SwerveConstants.BR_OFFSET, 
-      true, 
+      false, 
       true
     );
 
@@ -67,6 +68,11 @@ public class SwerveSubsystem extends SubsystemBase {
       getRotation2d(), 
       getModulePositions()
     );
+
+    //CONFIGURE AUTO BUILDER FOR HOLONOMIC DRIVE 
+    //FIXME idk if the poseSupplier (first param) is odometer obj or a method updating the odometer 
+    //HOW DO U GET A POSE SUPPLIER 
+    // AutoBuilder.configureHolonomic(null, null, null, null, null, null);
   }
 
   //returns the Rotation2d object 
@@ -80,6 +86,7 @@ public class SwerveSubsystem extends SubsystemBase {
     return odometer.getPoseMeters();
   }
 
+  // FIXME i dont think this works as intended,, resetPosition should reset everything to 0 
   public void setPose(Pose2d pose) {
     odometer.resetPosition(getRotation2d(), getModulePositions(), pose);
   }

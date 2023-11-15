@@ -50,25 +50,25 @@ public final class Constants {
     public static final int FL_DRIVE_PORT = 1;
     public static final int FL_ROTATION_PORT = 5;
     public static final int FL_ABSOLUTE_ENCODER_PORT = 9;
-    public static final double FL_OFFSET = -Math.toDegrees(1.534) + 90;
+    public static final double FL_OFFSET = Math.toDegrees(-3.11) + 10; //1.43 + 2;
 
     /* * * BACK LEFT * * */
     public static final int BL_DRIVE_PORT = 2;
     public static final int BL_ROTATION_PORT = 6;
     public static final int BL_ABSOLUTE_ENCODER_PORT = 10;
-    public static final double BL_OFFSET = -Math.toDegrees(1.485) + 90 + 180;
+    public static final double BL_OFFSET = Math.toDegrees(-3.11); //-1.73 + 1;
 
     /* * * BACK RIGHT * * */
     public static final int BR_DRIVE_PORT = 3;
     public static final int BR_ROTATION_PORT = 7;
     public static final int BR_ABSOLUTE_ENCODER_PORT = 11;
-    public static final double BR_OFFSET = -Math.toDegrees(2.703) + 90 + 180;
+    public static final double BR_OFFSET = Math.toDegrees(3.1) - 70;//-0.4 - 55;
 
     /* * * FRONT RIGHT * * */
-    public static final int FR_DRIVE_PORT = 8;
-    public static final int FR_ROTATION_PORT = 4;
+    public static final int FR_DRIVE_PORT = 4;
+    public static final int FR_ROTATION_PORT = 8;
     public static final int FR_ABSOLUTE_ENCODER_PORT = 12;
-    public static final double FR_OFFSET = -Math.toDegrees(2.637) + 90 + 180;
+    public static final double FR_OFFSET = Math.toDegrees(-0.03) - 50;//-0.4 - 90 + 23;
     
     /* * * CONVERSIONS FOR ENCODERS * * */
     //velocity in meters per sec instead of RPM 
@@ -80,9 +80,9 @@ public final class Constants {
     //public static final double ROTATION_ENCODER_VELOCITY_CONVERSION = ROTATION_ENCODER_POSITION_CONVERSION / 60; //rotation enc speed
 
     /* * * PID VALUES * * */
-    public static final double KP_TURNING = 0.008;//0.01; //0.1
-    public static final double KI_TURNING = 0;//0.01; //0.02
-    public static final double KD_TURNING = 0.0001;//0.002;
+    public static final double KP_TURNING = 0.0048;//0.008;
+    public static final double KI_TURNING = 0.0002;
+    public static final double KD_TURNING = 0.0001;//1;
 
     /* * * MAX * * */
     public static final double MAX_SPEED = 3.6576;
