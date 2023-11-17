@@ -27,7 +27,7 @@ public class SwerveSubsystem extends SubsystemBase {
       SwerveConstants.FL_ROTATION_PORT,
       SwerveConstants.FL_ABSOLUTE_ENCODER_PORT,
       SwerveConstants.FL_OFFSET,
-      true, 
+      false, 
       true
     ); //ba was here hahaa !!!
 
@@ -36,7 +36,7 @@ public class SwerveSubsystem extends SubsystemBase {
       SwerveConstants.BL_ROTATION_PORT, 
       SwerveConstants.BL_ABSOLUTE_ENCODER_PORT, 
       SwerveConstants.BL_OFFSET, 
-      false, 
+      true, 
       true
     );
 
@@ -54,7 +54,7 @@ public class SwerveSubsystem extends SubsystemBase {
       SwerveConstants.BR_ROTATION_PORT, 
       SwerveConstants.BR_ABSOLUTE_ENCODER_PORT, 
       SwerveConstants.BR_OFFSET, 
-      false, 
+      true, 
       true
     );
 
