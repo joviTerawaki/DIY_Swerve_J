@@ -41,7 +41,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     swerveSubsystem.setDefaultCommand(
-      new S_DriveCommand(swerveSubsystem, () -> -xbox.getLeftX(), () -> xbox.getLeftY(), () -> xbox.getRightX(), false)
+      new S_DriveCommand(swerveSubsystem, () -> -xbox.getLeftY(), () -> xbox.getLeftX(), () -> xbox.getRightX(), false)
     );
 
     //REGISTER NAMED COMMANDS FOR AUTOS SO THEY WORK :) 

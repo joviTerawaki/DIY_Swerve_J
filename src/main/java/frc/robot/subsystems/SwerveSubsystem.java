@@ -45,7 +45,7 @@ public class SwerveSubsystem extends SubsystemBase {
       SwerveConstants.FR_ROTATION_PORT, 
       SwerveConstants.FR_ABSOLUTE_ENCODER_PORT, 
       SwerveConstants.FR_OFFSET, 
-      false, 
+      true, 
       true
     );
 

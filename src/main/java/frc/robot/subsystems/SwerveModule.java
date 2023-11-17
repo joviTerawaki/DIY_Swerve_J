@@ -80,7 +80,7 @@ public class SwerveModule {
 
         //configure rotation absolute encoder 
         absoluteEncoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180); //abs enc is now +-180 
-        absoluteEncoder.configMagnetOffset(encoderOffset); //implements encoder offset?? untested 
+        // absoluteEncoder.configMagnetOffset(encoderOffset); //implements encoder offset?? untested 
         absoluteEncoder.configSensorDirection(SwerveConstants.ROTATION_ENCODER_DIRECTION); //False (default) means positive rotation occurs when magnet is spun counter-clockwise when observer is facing the LED side of CANCoder.
         absoluteEncoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
 
@@ -102,7 +102,7 @@ public class SwerveModule {
     }
 
     private double getAbsoluteEncoderDegrees() {
-        return absoluteEncoder.getAbsolutePosition(); // + (encOffset);
+        return absoluteEncoder.getAbsolutePosition() + (encOffset);
     }
 
     //returns a new SwerveModuleState representing the current drive velocity and rotation motor angle 
