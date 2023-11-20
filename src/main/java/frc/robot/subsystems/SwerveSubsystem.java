@@ -10,6 +10,8 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.SwerveConstants;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.pathplanner.lib.auto.AutoBuilder;
 
 public class SwerveSubsystem extends SubsystemBase {
@@ -65,7 +67,7 @@ public class SwerveSubsystem extends SubsystemBase {
     //instantiate odometer 
     odometer = new SwerveDriveOdometry(
       SwerveConstants.DRIVE_KINEMATICS, 
-      getRotation2d(), 
+      navx.getRotation2d(), 
       getModulePositions()
     );
 
@@ -78,7 +80,12 @@ public class SwerveSubsystem extends SubsystemBase {
   //returns the Rotation2d object 
   //a 2d coordinate represented by a point on the unit circle (the rotation of the robot)
   public Rotation2d getRotation2d() {
-    return Rotation2d.fromDegrees(navx.getYaw());
+    // return Rotation2d.fromDegrees(navx.getYaw());
+    return navx.getRotation2d();
+  }
+
+  public void resetNavx() {
+    navx.reset();
   }
 
   /* * * ODOMETRY * * */
@@ -168,10 +175,11 @@ public class SwerveSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    odometer.update(getRotation2d(), getModulePositions());
+    odometer.update(navx.getRotation2d(), getModulePositions());
     frontLeft.print();
     backLeft.print();
     frontRight.print();
     backRight.print();
+    SmartDashboard.putNumber("NAVX", navx.getYaw());
   }
 }
