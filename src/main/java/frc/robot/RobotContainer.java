@@ -41,7 +41,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     swerveSubsystem.setDefaultCommand(
-      new S_DriveCommand(swerveSubsystem, () -> xbox.getLeftY()*.8, () -> xbox.getLeftX()*.8, () -> xbox.getRightX()*.8, true)
+      new S_DriveCommand(swerveSubsystem, () -> xbox.getLeftY()*.9, () -> xbox.getLeftX()*.9, () -> xbox.getRightX()*.9, true)
     );
 
     //REGISTER NAMED COMMANDS FOR AUTOS SO THEY WORK :) 
@@ -53,7 +53,7 @@ public class RobotContainer {
   private void configureBindings() {
     //new JoystickButton(xbox, 1).onTrue(new InstantCommand(() -> swerveSubsystem.lock(), swerveSubsystem));
 
-    new JoystickButton(xbox, 7).onTrue(new InstantCommand(() -> swerveSubsystem.resetNavx()));
+    new JoystickButton(xbox, 1).onTrue(new InstantCommand(() -> swerveSubsystem.resetNavx()));
   }
 
   /**

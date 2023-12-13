@@ -11,6 +11,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.SwerveModuleConstants;
 import frc.robot.Constants.SwerveConstants;
 
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
@@ -19,6 +20,8 @@ import com.ctre.phoenix.sensors.WPI_CANCoder;
 
 public class SwerveModule {
     /* * * INITIALIZATION * * */
+
+    public int moduleID; 
     //initialize motors 
     private CANSparkMax driveMotor; 
     private CANSparkMax rotationMotor; 
@@ -47,15 +50,17 @@ public class SwerveModule {
      * @param driveInverted is the drive motor inverted? 
      * @param rotationInverted is the rotation motor inverted? 
      */
-    public SwerveModule(int drivePort, int rotationPort, int absoluteEncoderPort, double encoderOffset, boolean driveInverted, boolean rotationInverted) {
-        encOffset = encoderOffset;
+    public SwerveModule(int moduleID, SwerveModuleConstants moduleConstants) {
+        this.moduleID = moduleID; 
+        
+        encOffset = moduleConstants.angleOffset;
         //instantiate drive motor and encoder 
-        driveMotor = new CANSparkMax(drivePort, MotorType.kBrushless); 
+        driveMotor = new CANSparkMax(moduleConstants.driveMotorID, MotorType.kBrushless); 
         driveEncoder = driveMotor.getEncoder();
 
         //instantiate rotation motor and absolute encoder 
-        rotationMotor = new CANSparkMax(rotationPort, MotorType.kBrushless);
-        absoluteEncoder = new WPI_CANCoder(absoluteEncoderPort);
+        rotationMotor = new CANSparkMax(moduleConstants.rotationMotorID, MotorType.kBrushless);
+        absoluteEncoder = new WPI_CANCoder(moduleConstants.cancoderID);
 
         //reset all motor configuration (as suggested from raid zero) (optional but safe)
         driveMotor.restoreFactoryDefaults();
@@ -64,7 +69,7 @@ public class SwerveModule {
 
         /* * * DRIVE * * */
         //configure driving motor 
-        driveMotor.setInverted(driveInverted);
+        driveMotor.setInverted(moduleConstants.driveInverted);
         driveMotor.setIdleMode(IdleMode.kBrake);
 
         //set conversion factor for drive enc 
@@ -75,12 +80,12 @@ public class SwerveModule {
 
         /* * * ROTATION * * */
         //configure rotation motor 
-        rotationMotor.setInverted(rotationInverted);
+        rotationMotor.setInverted(moduleConstants.rotationInverted);
         rotationMotor.setIdleMode(IdleMode.kBrake);
 
         //configure rotation absolute encoder 
         absoluteEncoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180); //abs enc is now +-180 
-        absoluteEncoder.configMagnetOffset(encoderOffset); //implements encoder offset?? untested 
+        absoluteEncoder.configMagnetOffset(moduleConstants.angleOffset); //implements encoder offset?? untested 
         absoluteEncoder.configSensorDirection(SwerveConstants.ROTATION_ENCODER_DIRECTION); //False (default) means positive rotation occurs when magnet is spun counter-clockwise when observer is facing the LED side of CANCoder.
         absoluteEncoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
 
