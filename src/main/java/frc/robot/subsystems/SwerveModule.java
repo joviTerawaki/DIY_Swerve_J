@@ -35,7 +35,6 @@ public class SwerveModule {
     private PIDController rotationPID; 
 
     //init info 
-    //private int port; 
     private double encOffset; 
 
     //testing 
@@ -43,12 +42,8 @@ public class SwerveModule {
 
     /* * * CONSTRUCTOR * * */
     /* 
-     * @param drivePort port of drive motor 
-     * @param rotationPort port of rotation motor 
-     * @param absoluteEncoderPort port of CANCoder (absolute encoder) 
-     * @param encoderOffset offset of absolute encoder 
-     * @param driveInverted is the drive motor inverted? 
-     * @param rotationInverted is the rotation motor inverted? 
+     * @param moduleID the id of the module 
+     * @param moduleConstants a SwerveModuleConstants obj 
      */
     public SwerveModule(int moduleID, SwerveModuleConstants moduleConstants) {
         this.moduleID = moduleID; 
